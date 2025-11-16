@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/* Oyun alanı */
+#game-area {
+    width: 600px;
+    height: 200px;
+    border: 3px solid #333;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Karakter */
+#character {
+    width: 30px;
+    height: 30px;
+    background-color: #d9534f;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+/* Engel */
+#obstacle {
+    width: 20px;
+    height: 40px;
+    background-color: #5cb85c;
+    position: absolute;
+    bottom: 0;
+    /* Animasyonla hareket edecek */
+    animation: move-obstacle 2s linear infinite;
+}
+
+/* ======================== */
+/* Adım 2: Zıplama Kodları  */
+/* ======================== */
+
+@keyframes jump {
+    0%   { bottom: 0; }
+    50%  { bottom: 70px; }
+    100% { bottom: 0; }
+}
+
+#character.jump {
+    animation: jump 500ms linear;
+}
+
+/* ======================== */
+/* Adım 3: Engel Hareketi   */
+/* ======================== */
+
+@keyframes move-obstacle {
+    0% {
+        left: 600px; 
+    }
+    100% {
+        left: -20px;
+    }
+}
+
+/* ======================== */
+/* Adım 5: Skor Stili       */
+/* ======================== */
+
+#score-container {
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}

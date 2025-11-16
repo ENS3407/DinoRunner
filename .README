@@ -1,0 +1,39 @@
+# Engelden Kaçış Oyunu (Dino Runner Klonu)
+
+Bu proje, bir ders ödevi kapsamında geliştirilmiş basit bir web tabanlı platform oyunudur. Oyun, temel HTML, CSS ve JavaScript kullanılarak yapılmıştır.
+
+Oyunun amacı, "Boşluk" tuşuyla zıplayarak sürekli sağdan sola doğru hareket eden engellerin üzerinden atlamaktır. Çarpışma durumunda oyun biter ve skorunuz görüntülenir.
+
+## 🚀 Proje Dosyaları
+
+* `index.html`: Oyunun HTML iskeleti ve temel yapısı.
+* `style.css`: Oyun alanı, karakter, engel ve animasyonların tüm stilleri.
+* `script.js`: Zıplama mekaniği, çarpışma tespiti ve skor sayacı gibi tüm oyun mantığı.
+
+## 🤖 Kullanılan Yapay Zeka Komutları (Prompts)
+
+Ödev gereklilikleri doğrultusunda, oyunun geliştirilmesinde Google Gemini modelinden yardım alınmıştır. Aşağıda, geliştirme sürecinde kullanılan prompt'lar (komutlar) sırasıyla listelenmiştir.
+
+### Prompt 1: HTML/CSS İskeleti
+
+> Bana "Dino Runner" tarzı bir web oyunu için temel HTML ve CSS kodlarını ver. HTML içinde 'game-area' adında bir ana konteyner olsun. Bu konteyner içinde 'character' (oyuncu) ve 'obstacle' (engel) adında iki ayrı div bulunsun. CSS ile 'game-area' için sabit bir genişlik, yükseklik ve siyah bir kenarlık belirle. 'character' ve 'obstacle' div'lerini bu alanın sol alt köşesine basit kareler olarak konumlandır.
+
+### Prompt 2: Zıplama Mekaniği
+
+> Mevcut `style.css` ve yeni bir `script.js` dosyası kullanarak karakterin zıplamasını sağla. `style.css` içine 'jump' adında bir CSS animasyonu ekle (karakterin dikeyde yükselip geri inmesi). `script.js` dosyasında, klavyeden 'Space' (Boşluk) tuşuna basıldığında 'character' elementine bu 'jump' animasyon sınıfını ekleyen bir kod yaz. Animasyon bittikten sonra bu sınıfın otomatik olarak kaldırılmasını da sağla ki tekrar zıplayabilelim.
+
+### Prompt 3: Engel Hareketi
+
+> Mevcut `style.css` dosyama, 'move-obstacle' adında yeni bir CSS `@keyframes` animasyonu ekle. Bu animasyon, 'obstacle' (engel) div'ini ekranın sağ dışından (`right: -20px` veya `left: 600px`) sol dışına (`right: 600px` veya `left: -20px`) doğru hareket ettirmeli. Animasyonun sürekli (infinite) ve sabit hızda (linear) çalışmasını sağla. Bu animasyonu `obstacle` ID'sine doğrudan uygula.
+
+### Prompt 4: Çarpışma Tespiti
+
+> Mevcut `script.js` dosyama bir "oyun döngüsü" (game loop) ekle. `setInterval` kullanarak her 50 milisaniyede bir çalışan bir fonksiyon oluştur. Bu fonksiyon içinde, 'character' ve 'obstacle' elementlerinin anlık konumlarını (`getBoundingClientRect()` veya `offsetTop`/`offsetLeft` gibi) al. Karakterin zıplamada olup olmadığını (`offsetTop` < 170 gibi) ve engelin karakterin hizasında olup olmadığını (`offsetLeft` < 40 ve `offsetLeft` > 10 gibi) kontrol ederek bir çarpışma olup olmadığını denetle. Eğer çarpışma olursa, `alert('Game Over!')` göster ve 'obstacle' elementinin animasyonunu durdur (`animationPlayState = 'paused'`).
+
+### Prompt 5: Skor ve Yeniden Başlatma
+
+> Oyunuma bir skor sistemi ve yeniden başlatma özelliği ekle. `index.html` dosyama 'score' adında bir `div` ekle. `script.js` içinde, bir 'score' değişkeni tut. Hayatta kalınan her saniye (veya her 100ms) skoru artır ve bunu HTML'deki 'score' div'ine yazdır. Çarpışma olduğunda (Game Over), skoru artırmayı durdur ve `alert` kapandıktan sonra `location.reload()` komutuyla sayfanın yeniden yüklenmesini sağla (bu, oyunu yeniden başlatacak).
+
+### Prompt 6: Kodları Toparlama
+
+> Geliştirdiğimiz "Dino Runner" oyununun `index.html`, `style.css` ve `script.js` dosyalarının tam ve son hallerini, GitHub'a yüklemeye hazır olacak şekilde tek bir cevapta ver.
